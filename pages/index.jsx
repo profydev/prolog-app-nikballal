@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Routes } from "@config/routes";
 import { textFont } from "@styles/theme";
 import Link from "next/link";
+import Navbar from "./Navbar";
 
 const Header = styled.header`
   width: 100%;
@@ -73,28 +74,7 @@ const IssuesPage = () => {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/icons/logo-large.svg" alt="Prolog logo" />
           <nav>
-            <NavItems>
-              <NavItem>
-                <Link href="/" passHref>
-                  <NavLink>Home</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/products" passHref>
-                  <NavLink>Products</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/documentation" passHref>
-                  <NavLink>Documentation</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/pricing" passHref>
-                  <NavLink>Pricing</NavLink>
-                </Link>
-              </NavItem>
-            </NavItems>
+            <Navbar />
           </nav>
 
           <Link href={Routes.projects} passHref>

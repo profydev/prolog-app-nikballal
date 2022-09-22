@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Routes } from "@config/routes";
 import Link from "next/link";
 
 const NavItems = styled.ul`
@@ -20,22 +19,22 @@ const Navbar = () => {
     <div>
       <NavItems>
         <NavItem>
-          <Link href={Routes.home} passHref>
+          <Link href="/" passHref>
             <NavLink>Home</NavLink>
           </Link>
         </NavItem>
         <NavItem>
-          <Link href={Routes.products} passHref>
+          <Link href="/products" passHref>
             <NavLink>Products</NavLink>
           </Link>
         </NavItem>
         <NavItem>
-          <Link href={Routes.documentation} passHref>
+          <Link href="/documentation" passHref>
             <NavLink>Documentation</NavLink>
           </Link>
         </NavItem>
         <NavItem>
-          <Link href={Routes.pricing} passHref>
+          <Link href="/pricing" passHref>
             <NavLink>Pricing</NavLink>
           </Link>
         </NavItem>
