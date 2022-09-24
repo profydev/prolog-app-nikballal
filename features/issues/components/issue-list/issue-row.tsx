@@ -39,7 +39,7 @@ const LanguageIcon = styled.img`
   margin-right: ${space(3)};
 `;
 
-const ErrorTypeAndMessage = styled.div`
+const ErrorTypeAndMessage = styled.div`s
   color: ${color("gray", 900)};
 `;
 
