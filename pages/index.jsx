@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Routes } from "@config/routes";
+import { textFont } from "@styles/theme";
+import Link from "next/link";
+import Navbar from "./Navbar";
 
 const Header = styled.header`
   width: 100%;
@@ -10,6 +13,41 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   background: white;
+`;
+
+const Container = styled.div`
+  width: 1280px;
+  height: 80px;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+`;
+
+const NavItems = styled.ul`
+  display: flex;
+  list-style: none;
+`;
+const NavItem = styled.li`
+  padding: 0 16px;
+`;
+
+const NavLink = styled.a`
+  text-decoration: none;
+  color: #667085;
+`;
+
+const DashboardButton = styled.a`
+  height: 44px;
+  ${textFont("md", "medium")};
+  padding: 10px 18px;
+  color: #ffffff;
+  background: #7f56d9;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+  line-height: 44px;
 `;
 
 const ContactButton = styled.button`
@@ -30,11 +68,19 @@ const ContactButton = styled.button`
 
 const IssuesPage = () => {
   return (
-    <div>
+    <>
       <Header>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/icons/logo-large.svg" alt="Prolog logo" />
-        <a href={Routes.projects}>Dashboard</a>
+        <Container>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/icons/logo-large.svg" alt="Prolog logo" />
+          <nav>
+            <Navbar />
+          </nav>
+
+          <Link href={Routes.projects} passHref>
+            <DashboardButton>Open Dashboard</DashboardButton>
+          </Link>
+        </Container>
       </Header>
       <ContactButton
         onClick={() =>
@@ -46,7 +92,7 @@ const IssuesPage = () => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/message.svg" alt="Contact" />
       </ContactButton>
-    </div>
+    </>
   );
 };
 
