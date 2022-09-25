@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { ProjectCard } from "../project-card";
 import { useProjects } from "../../api/use-projects";
 import { breakpoint, space } from "@styles/theme";
+import { Badge, BadgeColor, BadgeSize } from "@features/ui";
+import AiOutlineArrowRight from "react-icons/fa";
 
 const List = styled.ul`
   display: grid;
@@ -18,6 +20,20 @@ const List = styled.ul`
   }
 `;
 
+const Reload = styled.a`
+  display: none;
+  color: #b42318;
+  padding: 15px 32px;
+  @media (min-width: ${breakpoint("desktop")}) {
+    display: flex;
+  }
+`;
+
+const Icon = styled.img`
+  transform: rotate(180deg);
+  fill: #b42318;
+`;
+
 export function ProjectList() {
   const { data, isLoading, isError, error } = useProjects();
 
@@ -27,7 +43,16 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <div>Error: {error.message}</div>;
+    return (
+      <Badge color={BadgeColor.error} size={BadgeSize.lg}>
+        {" "}
+        There was a problem while loading the project data.{" "}
+        <Reload href="http://localhost:3000/projects" className="btn">
+          {" "}
+          Try Again{" "}
+        </Reload>
+      </Badge>
+    );
   }
 
   return (
