@@ -3,7 +3,8 @@ import { ProjectCard } from "../project-card";
 import { useProjects } from "../../api/use-projects";
 import { breakpoint, space } from "@styles/theme";
 import { Badge, BadgeColor, BadgeSize } from "@features/ui";
-import AiOutlineArrowRight from "react-icons/fa";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const List = styled.ul`
   display: grid;
@@ -29,11 +30,6 @@ const Reload = styled.a`
   }
 `;
 
-const Icon = styled.img`
-  transform: rotate(180deg);
-  fill: #b42318;
-`;
-
 export function ProjectList() {
   const { data, isLoading, isError, error } = useProjects();
 
@@ -45,11 +41,12 @@ export function ProjectList() {
     console.error(error);
     return (
       <Badge color={BadgeColor.error} size={BadgeSize.lg}>
-        {" "}
-        There was a problem while loading the project data.{" "}
+        <RiErrorWarningLine style={{ padding: 3 }} />{" "}
+        <p style={{ padding: 40 }}>
+          There was a problem while loading the project data.
+        </p>
         <Reload href="http://localhost:3000/projects" className="btn">
-          {" "}
-          Try Again{" "}
+          Try Again <AiOutlineArrowRight style={{ padding: 5 }} />
         </Reload>
       </Badge>
     );
