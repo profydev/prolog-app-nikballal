@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { ProjectCard } from "../project-card";
 import { useProjects } from "../../api/use-projects";
 import { breakpoint, space } from "@styles/theme";
+import { Badge, BadgeColor, BadgeSize } from "@features/ui";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const List = styled.ul`
   display: grid;
@@ -18,6 +21,15 @@ const List = styled.ul`
   }
 `;
 
+const Reload = styled.a`
+  display: none;
+  color: #b42318;
+  padding: 15px 32px;
+  @media (min-width: ${breakpoint("desktop")}) {
+    display: flex;
+  }
+`;
+
 export function ProjectList() {
   const { data, isLoading, isError, error } = useProjects();
 
@@ -27,7 +39,17 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <div>Error: {error.message}</div>;
+    return (
+      <Badge color={BadgeColor.error} size={BadgeSize.lg}>
+        <RiErrorWarningLine style={{ padding: 3 }} />{" "}
+        <p style={{ padding: 40 }}>
+          There was a problem while loading the project data.
+        </p>
+        <Reload href="http://localhost:3000/projects" className="btn">
+          Try Again <AiOutlineArrowRight style={{ padding: 5 }} />
+        </Reload>
+      </Badge>
+    );
   }
 
   return (
